@@ -1,6 +1,27 @@
 from pprint import pprint
 import numpy as np
 
+def create_matrix_the_text(text_in, row_length, matr=None):
+    matr = [] if not matr else matr
+
+    row = []
+    text_iterator = iter(text_in)
+    while True:
+        try:
+            row.append(next(text_iterator))
+            if len(row) == row_length:
+                matr.append(row)
+                row = []
+
+        except StopIteration:
+            while len(row) < row_length:
+                row.append(" ")
+            if row:
+                matr.append(row)
+            break
+
+    return matr
+
 UKR_ALP = [
     'а', 'б', 'в', 'г', 'ґ', 'д', 'е',
     'є', 'ж', 'з', 'и', 'і', 'ї', 'й',
